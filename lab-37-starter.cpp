@@ -1,18 +1,17 @@
 #include <iostream>
 #include <string> 
 #include <fstream>
+#include <map>
+#include <list>
 
 using namespace std;
 
-int sum_ascii(string);
+int gen_hash_index(string);
 
 int main() {
-    // char a = 'A';
-    // cout << a << endl;
-    // cout << (int) a << endl;
-    // int b = 66;
-    // cout << b << endl;
-    // cout << (char) b << endl;
+    
+    // Initialize hash table
+    map<int, list<string>> hash_table;
 
     // open up the txt file with the data strings to be read
     ifstream dataFile("lab-37-data.txt");
@@ -22,7 +21,7 @@ int main() {
     // read in each string in file
     while(getline(dataFile, temp)) {
         // use sum_ascii function and increment into accumulator variable
-        count += sum_ascii(temp);
+        count += gen_hash_index(temp);
     }
 
     cout << "Grand Total: " << count << endl;
@@ -39,7 +38,7 @@ E1D2665B21EA
 */
 
 
-int sum_ascii(string s) {
+int gen_hash_index(string s) {
 
     // create accumulator variable to store total values
     int ascciSum = 0;
