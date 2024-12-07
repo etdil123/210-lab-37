@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string> 
+#include <fstream>
 
 using namespace std;
 
@@ -13,11 +14,18 @@ int main() {
     // cout << b << endl;
     // cout << (char) b << endl;
 
-    string test1 = "Aa"; 
+    // open up the txt file with the data strings to be read
+    ifstream dataFile("lab-37-data.txt");
+    string temp;
+    int count = 0;
 
-    int test = sum_ascii(test1);
+    // read in each string in file
+    while(getline(dataFile, temp)) {
+        // use sum_ascii function and increment into accumulator variable
+        count += sum_ascii(temp);
+    }
 
-    cout << "\nTest Value: " << test << endl;
+    cout << "Grand Total: " << count << endl;
 
     return 0;
 }
