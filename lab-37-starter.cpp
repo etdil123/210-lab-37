@@ -8,6 +8,7 @@
 using namespace std;
 
 int gen_hash_index(string);
+void display_entries(const map<int, list<string>>);
 int mainMenu();
 
 int main() {
@@ -37,10 +38,18 @@ int main() {
         // switch case on user selected option
         switch (userPick)
         {
+            // display first 100 entries
             case 1:
+                cout << "Displaying first 100 entries: " << endl;
+                display_entries(hash_table);
                 break;
-            case 2:
+            // search for a key
+            case 2: {
+                string searchKey;
+                cout << "Please enter key you would like to search for: " << endl;
+                cin >> searchKey;
                 break;
+            }
             case 3:
                 break;
             case 4:
@@ -57,29 +66,6 @@ int main() {
         };
 
     }
-
-
-    // // display the first 100 map entries
-    // int count = 0;
-
-    // // Loop through each map element 
-    // for (const auto & pair : hash_table) {
-    //     // exit loop at 100 map entries
-    //     if (count >= 100) 
-    //         break;
-        
-    //     // display key value
-    //     cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
-
-    //     // loop through and output each element in list
-    //     for (const auto i : pair.second) {
-    //         cout << i << ", ";
-    //     }
-
-    //     cout << endl;
-    //     // increment count variable 
-    //     count++;
-    // }
 
     return 0;
 }
@@ -126,6 +112,32 @@ int mainMenu() {
     return userOption;
 }
 
+void display_entries(const map<int, list<string>> hash_table) {
+    // constant 
+    int ENTRIES = 100;
 
+    // display the first 100 map entries
+    int count = 0;
+
+    // Loop through each map element 
+    for (const auto & pair : hash_table) {
+        // exit loop at 100 map entries
+        if (count >= ENTRIES) 
+            break;
+        
+        // display key value
+        cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
+
+        // loop through and output each element in list
+        for (const auto i : pair.second) {
+            cout << i << ", ";
+        }
+
+        cout << endl;
+        // increment count variable 
+        count++;
+    }
+
+}
 
 
