@@ -12,6 +12,7 @@ void display_entries(const map<int, list<string>>);
 int mainMenu();
 void searchHash(map<int, list<string>>, string);
 void addHash(map<int, list<string>> &, string);
+void removeHash(map<int, list<string>> &, string);
 
 int main() {
     
@@ -63,8 +64,14 @@ int main() {
                 addHash(hash_table, addKey);
                 break;
             }
-            case 4:
+            // Remove a key
+            case 4: {
+                string removeKey;
+                cout << "Please enter key you would like to be removed: " << endl;
+                cin >> removeKey;
+
                 break;
+            }
             case 5:
                 break;
             
@@ -190,4 +197,34 @@ void addHash(map<int, list<string>> &hash_table, string addString) {
 
     // display to user that value has been added
     cout << addString << " has been added in hash table with hash index " << hashIndex << endl;
+}
+
+void removeHash(map<int, list<string>> &hash_table, string removeString) {
+
+    // use hash function to calculate hash index 
+    int hashIndex = gen_hash_index(removeString);
+
+    // search hash table to see if hashIndex exists
+    auto searchMap = hash_table.find(hashIndex);
+
+    // search through hash_table looking for hashIndex - if found loop through list
+    if (searchMap != hash_table.end()) {
+        // iterate through list
+        for (string & s : searchMap->second) {
+            // If string is found, remove that value from the list
+            if (removeString == s) {
+                
+                return;  
+            }
+        }
+        
+        // If string has not been found print to user that it cannot be removed
+        cout << removeString << " cannot be removed - value was not found in hash table!" << endl;
+
+    }
+    // if it doesn't exist - value isn't in hash table and cannot be removed
+    else
+        cout << removeString << " cannot be removed - value was not found in hash table!" << endl;
+
+
 }
