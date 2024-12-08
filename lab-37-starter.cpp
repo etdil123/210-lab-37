@@ -28,14 +28,23 @@ int main() {
     // display the first 100 map entries
     int count = 0;
 
+    // Loop through each map element 
     for (const auto & pair : hash_table) {
+        // exit loop at 100 map entries
         if (count >= 100) 
             break;
         
+        // display key value
         cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
 
-        for (const auto i : pair.second)
-            cout << " "
+        // loop through and output each element in list
+        for (const auto i : pair.second) {
+            cout << i << ", ";
+        }
+
+        cout << endl;
+        // increment count variable 
+        count++;
     }
 
     return 0;
