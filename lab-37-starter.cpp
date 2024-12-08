@@ -26,7 +26,17 @@ int main() {
     }
 
     // display the first 100 map entries
-    
+    int count = 0;
+
+    for (const auto & pair : hash_table) {
+        if (count >= 100) 
+            break;
+        
+        cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
+
+        for (const auto i : pair.second)
+            cout << " "
+    }
 
     return 0;
 }
