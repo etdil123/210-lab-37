@@ -13,6 +13,7 @@ int mainMenu();
 void searchHash(map<int, list<string>>, string);
 void addHash(map<int, list<string>> &, string);
 void removeHash(map<int, list<string>> &, string);
+void modifyHash(map<int, list<string>> &, string);
 
 int main() {
     
@@ -69,12 +70,19 @@ int main() {
                 string removeKey;
                 cout << "Please enter key you would like to be removed: " << endl;
                 cin >> removeKey;
-
+                // use removeHash to remove user inputted value from hash table if it is in the hash table
                 removeHash(hash_table, removeKey);
                 break;
             }
-            case 5:
+            // Modify a key
+            case 5: {
+                string modifyKey;
+                cout << "Please enter key you would like to be modified: " << endl;
+                cin >> modifyKey;
+
+
                 break;
+            }
             
             // end program
             case 6:
@@ -213,10 +221,12 @@ void removeHash(map<int, list<string>> &hash_table, string removeString) {
         // Create iterator to move through the list from beginning 
         for (auto it = hash_table[hashIndex].begin() ; it != hash_table[hashIndex].end(); ) {
             if (*it == removeString) {
+                // erase value if removeString is found
                 it = hash_table[hashIndex].erase(it);
                 cout << removeString << " has been removed from hash table!" << endl;
                 return;
             }
+            // increment pointer if item was not found
             else 
                 ++it;
         }
@@ -228,6 +238,40 @@ void removeHash(map<int, list<string>> &hash_table, string removeString) {
     // if it doesn't exist - value isn't in hash table and cannot be removed
     else
         cout << removeString << " cannot be removed - value was not found in hash table!" << endl;
+}
+
+
+void modifyHash(map<int, list<string>> & hash_table, string modifyString) {
+
+    // use hash function to calculate hash index 
+    int hashIndex = gen_hash_index(modifyString);
+
+    // search hash table to see if hashIndex exists
+    auto searchMap = hash_table.find(hashIndex);
+
+    // search through hash_table looking for hashIndex - if found loop through list
+    if (searchMap != hash_table.end()) {
+        // Create iterator to move through the list from beginning 
+        for (auto it = hash_table[hashIndex].begin() ; it != hash_table[hashIndex].end(); ) {
+            if (*it == modifyString) {
+                // erase value if removeString is found
+                it = hash_table[hashIndex].erase(it);
+                cout << removeString << " has been removed from hash table!" << endl;
+                return;
+            }
+            // increment pointer if item was not found
+            else 
+                ++it;
+        }
+
+        // If string has not been found print to user that it cannot be removed
+        cout << modifyString << " cannot be removed - value was not found in hash table!" << endl;
+
+    }
+    // if it doesn't exist - value isn't in hash table and cannot be removed
+    else
+        cout << modifyString << " cannot be removed - value was not found in hash table!" << endl;
+
 
 
 }
