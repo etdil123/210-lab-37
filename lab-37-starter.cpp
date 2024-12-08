@@ -11,7 +11,7 @@ int gen_hash_index(string);
 void display_entries(const map<int, list<string>>);
 int mainMenu();
 void searchHash(map<int, list<string>>, string);
-void addHash(map<int, list<string>>, string);
+void addHash(map<int, list<string>> &, string);
 
 int main() {
     
@@ -59,8 +59,8 @@ int main() {
                 string addKey;
                 cout << "Please enter key you would like to be added: " << endl;
                 cin >> addKey;
-
-
+                // use addHash to enter user inputted string into hash table
+                addHash(hash_table, addKey);
                 break;
             }
             case 4:
@@ -180,8 +180,14 @@ void searchHash(map<int, list<string>> hash_table, string searchString) {
         
 }
 
-void addHash(map<int, list<string>> hash_table, string addString) {
+void addHash(map<int, list<string>> &hash_table, string addString) {
 
+    // Use hash function to calculate hash index
+    int hashIndex = gen_hash_index(addString);
 
-    
+     // add the string into the list at the generated key value
+    hash_table[hashIndex].push_back(addString);
+
+    // display to user that value has been added
+    cout << addString << " has been added in hash table with hash index " << hashIndex << endl;
 }
