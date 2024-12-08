@@ -109,7 +109,7 @@ These targets are present in the dataset and can be used for testing:
 E1D2665B21EA
 */
 
-
+// gen_hash_index takes in a string, calculates the sum of ASCII value and returns total integer value
 int gen_hash_index(string s) {
 
     // create accumulator variable to store total values
@@ -123,7 +123,7 @@ int gen_hash_index(string s) {
 
     return ascciSum;
 }
-
+// mainMenu displays menu option to user and returns back which number the user selected
 int mainMenu() {
 
     int userOption;
@@ -142,7 +142,7 @@ int mainMenu() {
 
     return userOption;
 }
-
+// display_entries returns no value - takes in a hash_table and iterates through to print out first 100 entries
 void display_entries(const map<int, list<string>> hash_table) {
     // constant 
     int ENTRIES = 100;
@@ -170,7 +170,7 @@ void display_entries(const map<int, list<string>> hash_table) {
     }
 
 }
-
+// searchHash returns no value - searches through hash_table and looks for a user inputted string
 void searchHash(map<int, list<string>> hash_table, string searchString) {
 
     // use hash function to calculate hash index 
@@ -196,8 +196,7 @@ void searchHash(map<int, list<string>> hash_table, string searchString) {
     }
     // if it doesn't exist - value isn't in hash table and return false
     else
-        cout << searchString << " was not found in hash table!" << endl;
-        
+        cout << searchString << " was not found in hash table!" << endl;       
 }
 
 void addHash(map<int, list<string>> &hash_table, string addString) {
@@ -244,7 +243,6 @@ void removeHash(map<int, list<string>> &hash_table, string removeString) {
         cout << removeString << " cannot be removed - value was not found in hash table!" << endl;
 }
 
-
 void modifyHash(map<int, list<string>> & hash_table, string oldString, string modifyString) {
 
     // use hash function to calculate hash index 
@@ -282,5 +280,4 @@ void modifyHash(map<int, list<string>> & hash_table, string oldString, string mo
     // if it doesn't exist - value isn't in hash table and cannot be modified
     else
         cout << oldString << " cannot be modified - value was not found in hash table!" << endl;
-
 }
