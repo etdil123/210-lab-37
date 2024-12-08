@@ -16,15 +16,13 @@ int main() {
     // open up the txt file with the data strings to be read
     ifstream dataFile("lab-37-data.txt");
     string temp;
-    int count = 0;
 
     // read in each string in file
     while(getline(dataFile, temp)) {
-        // use sum_ascii function and increment into accumulator variable
-        count += gen_hash_index(temp);
+        int total = gen_hash_index(temp);
+        // add the temp string into the hash_table
+        hash_table[total].push_back(temp);
     }
-
-    cout << "Grand Total: " << count << endl;
 
     return 0;
 }
