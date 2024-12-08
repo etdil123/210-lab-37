@@ -19,10 +19,14 @@ int main() {
 
     // read in each string in file
     while(getline(dataFile, temp)) {
-        int total = gen_hash_index(temp);
-        // add the temp string into the hash_table
-        hash_table[total].push_back(temp);
+        // store total integer value using hash function
+        int ascii_total = gen_hash_index(temp);
+        // add the string into the list at the generated key value
+        hash_table[ascii_total].push_back(temp);
     }
+
+    // display the first 100 map entries
+    
 
     return 0;
 }
