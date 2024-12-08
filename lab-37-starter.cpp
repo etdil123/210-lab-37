@@ -10,6 +10,7 @@ using namespace std;
 int gen_hash_index(string);
 void display_entries(const map<int, list<string>>);
 int mainMenu();
+bool searchHash(map<int, list<string>>, string);
 
 int main() {
     
@@ -140,4 +141,22 @@ void display_entries(const map<int, list<string>> hash_table) {
 
 }
 
+bool searchHash(map<int, list<string>> hash_table, string searchString) {
 
+    // use hash function to calculate hash index 
+    int hashIndex = gen_hash_index(searchString);
+
+    // search hash table to see if hashIndex exists
+    auto searchMap = hash_table.find(hashIndex);
+
+
+    if (searchMap != hash_table.end()) {
+        
+    }
+    // if it doesn't exist - value isn't in hash table and return false
+    else
+        return false;
+
+
+
+}
