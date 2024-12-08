@@ -10,7 +10,7 @@ using namespace std;
 int gen_hash_index(string);
 void display_entries(const map<int, list<string>>);
 int mainMenu();
-bool searchHash(map<int, list<string>>, string);
+void searchHash(map<int, list<string>>, string);
 
 int main() {
     
@@ -49,6 +49,8 @@ int main() {
                 string searchKey;
                 cout << "Please enter key you would like to search for: " << endl;
                 cin >> searchKey;
+
+                searchHash(hash_table, searchKey);
                 break;
             }
             case 3:
@@ -141,7 +143,7 @@ void display_entries(const map<int, list<string>> hash_table) {
 
 }
 
-bool searchHash(map<int, list<string>> hash_table, string searchString) {
+void searchHash(map<int, list<string>> hash_table, string searchString) {
 
     // use hash function to calculate hash index 
     int hashIndex = gen_hash_index(searchString);
@@ -149,14 +151,19 @@ bool searchHash(map<int, list<string>> hash_table, string searchString) {
     // search hash table to see if hashIndex exists
     auto searchMap = hash_table.find(hashIndex);
 
-
+    // search through hash_table looking for hashIndex - if found loop through list
     if (searchMap != hash_table.end()) {
-        
+        for (string s : hash_table[hashIndex]) {
+            if (searchString == s)
+                cout << searchString << " was found in hash table with hash index " << hashIndex << endl;
+                return;
+        }
+
+        cout << searchString << " was not found in hash table!" << endl;
+
     }
     // if it doesn't exist - value isn't in hash table and return false
     else
-        return false;
-
-
-
+        cout << searchString << " was not found in hash table!" << endl;
+        
 }
