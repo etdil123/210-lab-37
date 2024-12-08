@@ -8,6 +8,7 @@
 using namespace std;
 
 int gen_hash_index(string);
+int mainMenu();
 
 int main() {
     
@@ -26,27 +27,40 @@ int main() {
         hash_table[ascii_total].push_back(temp);
     }
 
-    // display the first 100 map entries
-    int count = 0;
+    bool programRun = true;
+    int userPick;
+    // while loop to implemenet menu functionality
+    while (programRun != false) {
 
-    // Loop through each map element 
-    for (const auto & pair : hash_table) {
-        // exit loop at 100 map entries
-        if (count >= 100) 
-            break;
-        
-        // display key value
-        cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
 
-        // loop through and output each element in list
-        for (const auto i : pair.second) {
-            cout << i << ", ";
-        }
 
-        cout << endl;
-        // increment count variable 
-        count++;
+
+
+
     }
+
+
+    // // display the first 100 map entries
+    // int count = 0;
+
+    // // Loop through each map element 
+    // for (const auto & pair : hash_table) {
+    //     // exit loop at 100 map entries
+    //     if (count >= 100) 
+    //         break;
+        
+    //     // display key value
+    //     cout << "Map Entry #" << count + 1 << ":\n    Key: " << pair.first << " Value: ";
+
+    //     // loop through and output each element in list
+    //     for (const auto i : pair.second) {
+    //         cout << i << ", ";
+    //     }
+
+    //     cout << endl;
+    //     // increment count variable 
+    //     count++;
+    // }
 
     return 0;
 }
@@ -74,6 +88,23 @@ int gen_hash_index(string s) {
     return ascciSum;
 }
 
+int mainMenu() {
+
+    int userOption;
+    // string menu to display to user
+    string menuDisplay = "\n** Hash Table Menu ** - Select an option below:\n[1] Print first 100 entries\n[2] Search for key\n[3] Add key\n[4] Remove key\n[5] Modify key\n[6] Exit program\n";
+
+    cout << menuDisplay;
+    cin >> userOption;
+
+    // input validation - ensure user selects option between 1 and 6
+    while (userOption < 1 || userOption > 6 ) {
+        cout << "Please select valid menu option between 1 and 6" << endl;
+        cout << menuDisplay;
+        cin >> userOption;
+    }
+
+}
 
 
 
