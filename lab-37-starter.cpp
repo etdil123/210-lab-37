@@ -32,10 +32,29 @@ int main() {
     // while loop to implemenet menu functionality
     while (programRun != false) {
 
+        userPick = mainMenu();
 
+        // switch case on user selected option
+        switch (userPick)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            
+            // end program
+            case 6:
+                programRun = false;
+                cout << "Thank you for using hash table program!" << endl;
+                break;
 
-
-
+        };
 
     }
 
@@ -104,6 +123,7 @@ int mainMenu() {
         cin >> userOption;
     }
 
+    return userOption;
 }
 
 
