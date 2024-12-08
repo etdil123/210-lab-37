@@ -210,13 +210,13 @@ void removeHash(map<int, list<string>> &hash_table, string removeString) {
     // search through hash_table looking for hashIndex - if found loop through list
     if (searchMap != hash_table.end()) {
         // iterate through list
-        for (string & s : searchMap->second) {
-            // If string is found, remove that value from the list
-            if (removeString == s) {
-                
-                return;  
-            }
+        for (auto it = hash_table[hashIndex].begin() ; it != hash_table[hashIndex].end();) {
+            if (*it == removeString)
+                hash_table[hashIndex].erase(it);
+                cout << removeString << " has been removed from hash table!" << endl;
+                return;
         }
+
         
         // If string has not been found print to user that it cannot be removed
         cout << removeString << " cannot be removed - value was not found in hash table!" << endl;
