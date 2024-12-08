@@ -153,13 +153,16 @@ void searchHash(map<int, list<string>> hash_table, string searchString) {
 
     // search through hash_table looking for hashIndex - if found loop through list
     if (searchMap != hash_table.end()) {
-        for (string s : hash_table[hashIndex]) {
+        // iterate through list
+        for (string &s : searchMap->second) {
+            // if the search string is equal to value in list then print to user
             if (searchString == s)
                 cout << searchString << " was found in hash table with hash index " << hashIndex << endl;
                 return;
         }
-
+        
         cout << searchString << " was not found in hash table!" << endl;
+
 
     }
     // if it doesn't exist - value isn't in hash table and return false
