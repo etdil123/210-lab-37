@@ -11,6 +11,7 @@ int gen_hash_index(string);
 void display_entries(const map<int, list<string>>);
 int mainMenu();
 void searchHash(map<int, list<string>>, string);
+void addHash(map<int, list<string>>, string);
 
 int main() {
     
@@ -49,12 +50,19 @@ int main() {
                 string searchKey;
                 cout << "Please enter key you would like to search for: " << endl;
                 cin >> searchKey;
-
+                // use searchHash to display if user inputted value is in hash table
                 searchHash(hash_table, searchKey);
                 break;
             }
-            case 3:
+            // add a key into hash table
+            case 3: {
+                string addKey;
+                cout << "Please enter key you would like to be added: " << endl;
+                cin >> addKey;
+
+
                 break;
+            }
             case 4:
                 break;
             case 5:
@@ -154,19 +162,26 @@ void searchHash(map<int, list<string>> hash_table, string searchString) {
     // search through hash_table looking for hashIndex - if found loop through list
     if (searchMap != hash_table.end()) {
         // iterate through list
-        for (string &s : searchMap->second) {
-            // if the search string is equal to value in list then print to user
-            if (searchString == s)
+        for (string & s : searchMap->second) {
+            // If string is found print to user
+            if (searchString == s) {
                 cout << searchString << " was found in hash table with hash index " << hashIndex << endl;
-                return;
+                return;  
+            }
         }
         
+        // If string has not been found print to user it is not in hash table
         cout << searchString << " was not found in hash table!" << endl;
-
 
     }
     // if it doesn't exist - value isn't in hash table and return false
     else
         cout << searchString << " was not found in hash table!" << endl;
         
+}
+
+void addHash(map<int, list<string>> hash_table, string addString) {
+
+
+    
 }
