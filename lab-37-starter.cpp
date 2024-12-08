@@ -258,8 +258,15 @@ void modifyHash(map<int, list<string>> & hash_table, string oldString, string mo
         // Create iterator to move through the list from beginning 
         for (auto it = hash_table[hashIndex].begin() ; it != hash_table[hashIndex].end(); ) {
             if (*it == oldString) {
-                // if found, change the dereferenced value of it iterator to new modified string value
-                *it = modifyString;
+                // erase value if removeString is found
+                it = hash_table[hashIndex].erase(it);
+
+                // get new calculated hash index for the modified string
+                int newHashIndex = gen_hash_index(modifyString);
+
+                // Insert the new string into hash table
+                hash_table[newHashIndex].push_back(modifyString);
+                
                 cout << modifyString << " has modified the value of " << oldString << "!" << endl;
                 return;
             }
@@ -267,7 +274,7 @@ void modifyHash(map<int, list<string>> & hash_table, string oldString, string mo
             else 
                 ++it;
         }
-
+        
         // If old string cannot be found, display to user it cannot be modified
         cout << oldString << " cannot be modified - value was not found in hash table!" << endl;
 
